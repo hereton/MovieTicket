@@ -109,10 +109,10 @@ public class MovieController {
 			int seats = ticket.getAmount();
 			double totalPrice = ticket.getTotalPrice();
 			if (seats > 0) {
-				tempPane.setText(String.format("Amount : %d\nPrice : %.2f Baht\n", seats, totalPrice));
+				tempPane.setText(String.format("Total Amount : %d\nTotal Price : %.2f Baht\n", seats, totalPrice));
 				tempPane.setEditable(false);
-				int n = JOptionPane.showConfirmDialog(ui, tempPane, "Comfirn tickets", JOptionPane.YES_OPTION,
-						JOptionPane.QUESTION_MESSAGE, buyIcon); // 0=yes, 1=no
+				int n = JOptionPane.showConfirmDialog(ui, tempPane, "Confirm tickets", JOptionPane.YES_OPTION,
+						JOptionPane.QUESTION_MESSAGE, buyIcon);
 				if (n == 0) {
 					ticket.confirm();
 					reset();

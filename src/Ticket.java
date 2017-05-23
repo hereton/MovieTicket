@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Ticket {
 
@@ -7,6 +11,7 @@ public class Ticket {
 	private Movie tempMovie;
 	private Movie realObjectMovie;
 	private int count;
+	private Map<String, ArrayList<String>> description = new HashMap<>();
 
 	public Ticket() {
 	}
@@ -29,7 +34,12 @@ public class Ticket {
 					}
 				}
 			}
+		printDescription();
 		this.resetAll();
+	}
+
+	public void printDescription() {
+		System.out.println(description);
 	}
 
 	public boolean isChecked(int row, int column) {
@@ -40,11 +50,15 @@ public class Ticket {
 
 	public void unbooking(int row, int column) {
 		this.currentSeat.unbooking(row, column);
+		description.get(this.getCurrentTheater().getName()).remove("[" + row + "," + column + "]");
 		count--;
 	}
 
 	public void booking(int row, int column) {
 		this.currentSeat.booking(row, column);
+		if (!description.containsKey(this.getCurrentTheater().getName()))
+			description.put(this.getCurrentTheater().getName(), new ArrayList<>());
+		description.get(this.getCurrentTheater().getName()).add("[" + row + "," + column + "]");
 		count++;
 	}
 
@@ -71,7 +85,6 @@ public class Ticket {
 	public void setCurrentTheater(String theater) {
 		this.currentTheater = this.realObjectMovie.getTheater().get(theater);
 		this.tempTheater = this.tempMovie.getTheater().get(theater);
-
 	}
 
 	public int getAmount() {
@@ -89,12 +102,14 @@ public class Ticket {
 					this.tempMovie.getTheater().get(s).getSeats().get(x).unbookingAll();
 			}
 			count = 0;
+			this.description = new HashMap<>();
 		}
 	}
 
 	public void reset() {
 		int number_deleted = this.currentSeat.unbookingAll();
 		this.count -= number_deleted;
+		this.description.remove(this.getCurrentTheater().getName());
 	}
 
 	public Movie createCopyMovie(Movie movie) {
@@ -126,7 +141,6 @@ public class Ticket {
 				}
 			}
 		return copy;
-
 	}
 
 }

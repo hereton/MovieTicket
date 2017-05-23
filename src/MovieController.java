@@ -13,6 +13,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 
@@ -102,6 +103,12 @@ public class MovieController {
 	}
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
+		String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
+		Object[][] data = { { "Theater", "Show Time", "Seat", "Price" }, { ticket.getCurrentTheater().toString(),
+				ticket.getCurrentShowtime().toString(), "get seat", "get price" } };
+
+		JTable table = new JTable(data, columnNames);
+
 		JTextPane tempPane = new JTextPane();
 		tempPane.setFont(new Font(Font.SERIF, Font.BOLD, 14));
 		tempPane.setForeground(Color.black);
@@ -111,7 +118,7 @@ public class MovieController {
 			if (seats > 0) {
 				tempPane.setText(String.format("Amount : %d\nPrice : %.2f Baht\n", seats, totalPrice));
 				tempPane.setEditable(false);
-				int n = JOptionPane.showConfirmDialog(ui, tempPane, "Comfirn tickets", JOptionPane.YES_OPTION,
+				int n = JOptionPane.showConfirmDialog(ui, table, "Comfirn tickets", JOptionPane.YES_OPTION,
 						JOptionPane.QUESTION_MESSAGE, buyIcon); // 0=yes, 1=no
 				if (n == 0) {
 					ticket.confirm();

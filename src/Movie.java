@@ -1,6 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * movie class contain a movie details.
+ * 
+ * @author Taksin chinawat.
+ *
+ */
 public class Movie implements Cloneable {
 
 	private String title;
@@ -16,6 +22,12 @@ public class Movie implements Cloneable {
 		this.length = length;
 	}
 
+	/**
+	 * add showtime in show
+	 * 
+	 * @param nameTheater
+	 * @param showTime
+	 */
 	public void addShowtime(String nameTheater, String showTime) {
 		if (theaterMap.containsKey(nameTheater))
 			this.theaterMap.get(nameTheater).addShowTime(showTime);

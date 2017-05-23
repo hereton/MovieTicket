@@ -103,6 +103,7 @@ public class MovieController {
 	}
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
+		// did not show this when click buy button.
 		String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
 		Object[][] data = { { "Theater", "Show Time", "Seat", "Price" }, { ticket.getCurrentTheater().toString(),
 				ticket.getCurrentShowtime().toString(), "get seat", "get price" } };
@@ -116,10 +117,12 @@ public class MovieController {
 			int seats = ticket.getAmount();
 			double totalPrice = ticket.getTotalPrice();
 			if (seats > 0) {
-				tempPane.setText(String.format("Amount : %d\nPrice : %.2f Baht\n", seats, totalPrice));
+				tempPane.setText(String.format("Total Amount : %d\nTotal Price : %.2f Baht\n", seats, totalPrice));
 				tempPane.setEditable(false);
+
 				int n = JOptionPane.showConfirmDialog(ui, table, "Comfirn tickets", JOptionPane.YES_OPTION,
 						JOptionPane.QUESTION_MESSAGE, buyIcon); // 0=yes, 1=no
+
 				if (n == 0) {
 					ticket.confirm();
 					reset();

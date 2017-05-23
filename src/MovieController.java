@@ -8,7 +8,6 @@ import java.time.LocalTime;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

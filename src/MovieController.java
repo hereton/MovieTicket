@@ -29,8 +29,6 @@ public class MovieController {
 	private MovieTicketUI ui;
 	private Map<String, Movie> movies;
 	private DefaultListModel<String> movieList = new DefaultListModel<>();
-	private Icon buyIcon = new ImageIcon("src\\image\\money.png");
-	private JToggleButton[][] buttons;
 
 	public MovieController(MovieTicketUI ui, MovieManager manager) {
 		this.manager = manager;
@@ -103,7 +101,8 @@ public class MovieController {
 	}
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
-		// did not show this when click buy button.
+		Icon buyIcon = new ImageIcon("src\\image\\money.png");
+		// did not show columnNames when click buy button.
 		String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
 		Object[][] data = { { "Theater", "Show Time", "Seat", "Price" }, { ticket.getCurrentTheater().toString(),
 				ticket.getCurrentShowtime().toString(), "get seat", "get price" } };
@@ -210,7 +209,8 @@ public class MovieController {
 	}
 
 	private void creatButtonWithEnterRowAndCol(int row, int col) {
-		buttons = new JToggleButton[row][col];
+
+		JToggleButton[][] buttons = new JToggleButton[row][col];
 		JPanel pane = new JPanel();
 		pane.setBackground(Color.BLACK);
 		pane.setBorder(BorderFactory.createEmptyBorder(130, 0, 0, 0));

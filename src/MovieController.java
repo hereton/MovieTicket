@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,9 +14,11 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 
@@ -103,6 +106,21 @@ public class MovieController {
 	}
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
+		JPanel panel = new JPanel(new BorderLayout());
+
+		// add total seat and total price using panel.
+		JPanel totalInfo = new JPanel();
+		JLabel movieNameLabel = new JLabel("Movie Name:");
+		JLabel totalSeatLabel = new JLabel("Total seat:");
+		JLabel totalPriceLabel = new JLabel("Total Price:");
+		JTextField movieNameTextField = new JTextField(ticket.getCurrentMovie().getTitle() + "");
+		JTextField totalSeatTextField = new JTextField(ticket.getAmount() + "");
+		JTextField totalPriceTextField = new JTextField(ticket.getTotalPrice() + "");
+
+		movieNameTextField.setEditable(false);
+		totalSeatTextField.setEditable(false);
+		totalPriceTextField.setEditable(false);
+
 		Icon buyIcon = new ImageIcon("src\\image\\money.png");
 		// do not show columnNames when click buy button.
 		String[] bookingInfo = ticket.getDescription();
@@ -122,17 +140,23 @@ public class MovieController {
 			}
 		}
 		JTable table = new JTable(data, columnNames);
-		JTextPane tempPane = new JTextPane();
-		tempPane.setFont(new Font(Font.SERIF, Font.BOLD, 14));
-		tempPane.setForeground(Color.black);
+		table.setEnabled(false);
+
+		totalInfo.add(movieNameLabel);
+		totalInfo.add(movieNameTextField);
+		totalInfo.add(totalSeatLabel);
+		totalInfo.add(totalSeatTextField);
+		totalInfo.add(totalPriceLabel);
+		totalInfo.add(totalPriceTextField);
+
+		panel.add(table, BorderLayout.NORTH);
+		panel.add(totalInfo, BorderLayout.SOUTH);
+
 		if (ticket.getCurrentMovie() != null) {
 			int seats = ticket.getAmount();
-			double totalPrice = ticket.getTotalPrice();
 			if (seats > 0) {
-				tempPane.setText(String.format("Total Amount : %d\nTotal Price : %.2f Baht\n", seats, totalPrice));
-				tempPane.setEditable(false);
 
-				int n = JOptionPane.showConfirmDialog(ui, table, "Confirm tickets", JOptionPane.YES_OPTION,
+				int n = JOptionPane.showConfirmDialog(ui, panel, "Confirm tickets", JOptionPane.YES_OPTION,
 						JOptionPane.QUESTION_MESSAGE, buyIcon);
 
 				if (n == 0) {

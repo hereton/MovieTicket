@@ -109,7 +109,9 @@ public class Ticket {
 	public void reset() {
 		int number_deleted = this.currentSeat.unbookingAll();
 		this.count -= number_deleted;
-		this.description.remove(this.getCurrentTheater().getName());
+		for (int i = 0; i < this.description.size(); i++)
+			if (description.get(i).contains(this.currentTheater.getName()))
+				description.remove(i);
 	}
 
 	public Movie createCopyMovie(Movie movie) {

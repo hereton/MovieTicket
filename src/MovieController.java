@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 
 /**
  * Keeps references to Models and UI classes
@@ -261,6 +262,8 @@ public class MovieController {
 				buttons[i][j] = new JToggleButton();
 				buttons[i][j].setActionCommand(i + " " + j);
 				buttons[i][j].setPreferredSize(new Dimension(30, 30));
+				buttons[i][j].setToolTipText("Row: " + (i + 1) + " ,Column: " + (j + 1));
+
 				String selectedShowTime = ui.getShowTimeComboBox().getSelectedItem().toString();
 				if (isTimePassedShowtime(selectedShowTime)) {
 					buttons[i][j].setIcon(new ImageIcon("src/image/seatAvailable.jpg"));

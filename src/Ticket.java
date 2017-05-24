@@ -50,14 +50,14 @@ public class Ticket {
 
 	public void unbooking(int row, int column) {
 		this.currentSeat.unbooking(row, column);
-		description.remove(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + row + "," + column + "-"
+		description.remove(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + (row+1) + "," + (column+1) + "-"
 				+ currentTheater.getPrice());
 		count--;
 	}
 
 	public void booking(int row, int column) {
 		this.currentSeat.booking(row, column);
-		description.add(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + row + "," + column + "-"
+		description.add(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + (row+1) + "," + (column+1) + "-"
 				+ currentTheater.getPrice());
 		count++;
 	}

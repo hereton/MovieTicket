@@ -56,6 +56,11 @@ public class MovieTicketUI extends JFrame {
 		initComponents();
 	}
 
+	/*
+	 * public static void main(String[] args) { MovieTicketUI ui=new
+	 * MovieTicketUI(); ui.run(); }
+	 */
+
 	/**
 	 * created by using NetBeans design.
 	 */

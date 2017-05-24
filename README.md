@@ -1,2 +1,3 @@
 # MovieTicket
-movie ticket for daily use.
+__Movie Ticket for daily use.__
+>By Wongsathorn Panichkurkul and Totsapon Menkul

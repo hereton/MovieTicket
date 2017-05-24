@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -13,7 +15,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
@@ -103,14 +104,24 @@ public class MovieController {
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
 		Icon buyIcon = new ImageIcon("src\\image\\money.png");
-		Object[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
-		Object[][] data = { { "Theater A", "1200", "12,23,11,13,14,15", "totalprice" },
-				{ ticket.getCurrentTheater().toString(), ticket.getCurrentShowtime().toString(), "get seat",
-						"get price" } };
-
+		// do not show columnNames when click buy button.
+		String[] bookingInfo = ticket.getDescription();
+		int row = bookingInfo.length;
+		Object[][] data = new Object[row + 1][4];
+		String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
+		/** Add head */
+		data[0][0] = "Theater";
+		data[0][1] = "Show Time";
+		data[0][2] = "Seat";
+		data[0][3] = "Price";
+		/** add Data */
+		for (int i = 0; i < row; i++) {
+			for (int k = 0; k < 4; k++) {
+				String[] tempData = bookingInfo[i].split("-");
+				data[i + 1][k] = tempData[k];
+			}
+		}
 		JTable table = new JTable(data, columnNames);
-		table.setEnabled(true);
-
 		JTextPane tempPane = new JTextPane();
 		tempPane.setFont(new Font(Font.SERIF, Font.BOLD, 14));
 		tempPane.setForeground(Color.black);
@@ -121,9 +132,8 @@ public class MovieController {
 				tempPane.setText(String.format("Total Amount : %d\nTotal Price : %.2f Baht\n", seats, totalPrice));
 				tempPane.setEditable(false);
 
-				int n = JOptionPane.showConfirmDialog(ui, new JScrollPane(table), "Comfirm tickets",
-						JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, buyIcon); // 0=yes,
-																						// 1=no
+				int n = JOptionPane.showConfirmDialog(ui, table, "Confirm tickets", JOptionPane.YES_OPTION,
+						JOptionPane.QUESTION_MESSAGE, buyIcon);
 
 				if (n == 0) {
 					ticket.confirm();

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Ticket {
@@ -10,7 +11,7 @@ public class Ticket {
 	private Movie tempMovie;
 	private Movie realObjectMovie;
 	private int count;
-	private Map<String, ArrayList<String>> description = new HashMap<>();
+	private List<String> description = new ArrayList<>();
 
 	public Ticket() {
 	}
@@ -33,12 +34,12 @@ public class Ticket {
 					}
 				}
 			}
-		printDescription();
 		this.resetAll();
 	}
 
-	public void printDescription() {
-		System.out.println(description);
+	public String[] getDescription() {
+		String[] allDescription = new String[this.description.size()];
+		return this.description.toArray(allDescription);
 	}
 
 	public boolean isChecked(int row, int column) {
@@ -49,15 +50,15 @@ public class Ticket {
 
 	public void unbooking(int row, int column) {
 		this.currentSeat.unbooking(row, column);
-		description.get(this.getCurrentTheater().getName()).remove("[" + row + "," + column + "]");
+		description.remove(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + row + "," + column + "-"
+				+ currentTheater.getPrice());
 		count--;
 	}
 
 	public void booking(int row, int column) {
 		this.currentSeat.booking(row, column);
-		if (!description.containsKey(this.getCurrentTheater().getName()))
-			description.put(this.getCurrentTheater().getName(), new ArrayList<>());
-		description.get(this.getCurrentTheater().getName()).add("[" + row + "," + column + "]");
+		description.add(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + row + "," + column + "-"
+				+ currentTheater.getPrice());
 		count++;
 	}
 
@@ -101,7 +102,7 @@ public class Ticket {
 					this.tempMovie.getTheater().get(s).getSeats().get(x).unbookingAll();
 			}
 			count = 0;
-			this.description = new HashMap<>();
+			this.description = new ArrayList<>();
 		}
 	}
 

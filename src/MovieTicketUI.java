@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * user interface using NetBean to design.
  *
- * @author Doraemon.
+ * @author Wongsathorn Panichkurkul and Totsapon Menkul
  */
 public class MovieTicketUI extends JFrame {
 

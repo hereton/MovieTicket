@@ -13,6 +13,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
@@ -102,12 +103,13 @@ public class MovieController {
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
 		Icon buyIcon = new ImageIcon("src\\image\\money.png");
-		// did not show columnNames when click buy button.
-		String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
-		Object[][] data = { { "Theater", "Show Time", "Seat", "Price" }, { ticket.getCurrentTheater().toString(),
-				ticket.getCurrentShowtime().toString(), "get seat", "get price" } };
+		Object[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
+		Object[][] data = { { "Theater A", "1200", "12,23,11,13,14,15", "totalprice" },
+				{ ticket.getCurrentTheater().toString(), ticket.getCurrentShowtime().toString(), "get seat",
+						"get price" } };
 
 		JTable table = new JTable(data, columnNames);
+		table.setEnabled(true);
 
 		JTextPane tempPane = new JTextPane();
 		tempPane.setFont(new Font(Font.SERIF, Font.BOLD, 14));
@@ -119,8 +121,9 @@ public class MovieController {
 				tempPane.setText(String.format("Total Amount : %d\nTotal Price : %.2f Baht\n", seats, totalPrice));
 				tempPane.setEditable(false);
 
-				int n = JOptionPane.showConfirmDialog(ui, table, "Comfirn tickets", JOptionPane.YES_OPTION,
-						JOptionPane.QUESTION_MESSAGE, buyIcon); // 0=yes, 1=no
+				int n = JOptionPane.showConfirmDialog(ui, new JScrollPane(table), "Comfirm tickets",
+						JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, buyIcon); // 0=yes,
+																						// 1=no
 
 				if (n == 0) {
 					ticket.confirm();

@@ -1,3 +1,4 @@
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -163,6 +164,7 @@ public class MovieTicketUI extends JFrame {
 		descriptionTextArea.setEditable(false);
 		descriptionTextArea.setColumns(20);
 		descriptionTextArea.setRows(5);
+		descriptionTextArea.setMargin(new Insets(2, 2, 10, 0));
 		jScrollPane2.setViewportView(descriptionTextArea);
 
 		javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
@@ -479,6 +481,9 @@ public class MovieTicketUI extends JFrame {
 		pack();
 	}// </editor-fold>
 
+	/**
+	 * set current time in curremtTimeLabel.
+	 */
 	private void setCurrentTime() {
 		int delay = 1000; // milliseconds
 		ActionListener setCurrentTimeListener = new ActionListener() {
@@ -599,14 +604,29 @@ public class MovieTicketUI extends JFrame {
 		return this.showTimeComboBox;
 	}
 
+	/**
+	 * get iconTheaterLabel.
+	 * 
+	 * @return iconTheaterLabel.
+	 */
 	public JLabel getIconTheaterLabel() {
 		return this.iconTheaterLabel;
 	}
 
+	/**
+	 * get rowAndColumnPanel.
+	 * 
+	 * @return rowAndColumnPanel.
+	 */
 	public JPanel getRowAndColumnPanel() {
 		return this.rowAndColumnPanel;
 	}
 
+	/**
+	 * get pricePerSeatTextField.
+	 * 
+	 * @return pricePerSeatTextField.
+	 */
 	public JTextField getPricePerSeatTextField() {
 		return this.pricePerSeatTextField;
 	}

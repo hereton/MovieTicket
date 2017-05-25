@@ -6,7 +6,6 @@ To run this application you will need 3 things
 - 2 Book.csv
 - 3 Theater.csv
 
-<br>You can add or remove all movies and details by editing Book.csv files.<br>
-And edit each theater by change row and column.
+<br>You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column.
 
 >By Wongsathorn Panichkurkul and Totsapon Menkul

@@ -122,7 +122,7 @@ public class MovieTicketUI extends JFrame {
 		movieJList.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 		jScrollPane1.setViewportView(movieJList);
 
-		chooseMovieButton.setIcon(new javax.swing.ImageIcon("src\\image\\chooseButton.png")); // NOI18N
+		chooseMovieButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/image/chooseButton.png"))); // NOI18N
 
 		javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
 		leftPanel.setLayout(leftPanelLayout);
@@ -220,7 +220,7 @@ public class MovieTicketUI extends JFrame {
 		currentTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
 		currentTimeLabel.setText("--/--/--");
 
-		logoLabel.setIcon(new javax.swing.ImageIcon("src\\image\\Logo.jpg")); // NOI18N
+		logoLabel.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/image/Logo.jpg"))); // NOI18N
 
 		javax.swing.GroupLayout showAndTheaPanelLayout = new javax.swing.GroupLayout(showAndTheaPanel);
 		showAndTheaPanel.setLayout(showAndTheaPanelLayout);
@@ -293,7 +293,7 @@ public class MovieTicketUI extends JFrame {
 		rowAndColumnPanel.setBackground(new java.awt.Color(0, 0, 0));
 		rowAndColumnPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-		movieScreenLabel.setIcon(new javax.swing.ImageIcon("src\\image\\movieScreen.png")); // NOI18N
+		movieScreenLabel.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/image/movieScreen.png"))); // NOI18N
 		movieScreenLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 		movieScreenLabel.setMaximumSize(new java.awt.Dimension(1900, 1200));
 		movieScreenLabel.setPreferredSize(new java.awt.Dimension(760, 76));
@@ -341,9 +341,9 @@ public class MovieTicketUI extends JFrame {
 		priceTextField.setColumns(5);
 		priceTextField.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
-		buyButton.setIcon(new javax.swing.ImageIcon("src\\image\\buyTicket.jpg")); // NOI18N
+		buyButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/image/buyTicket.jpg"))); // NOI18N
 
-		clearButton.setIcon(new javax.swing.ImageIcon("src\\image\\clearButton.png")); // NOI18N
+		clearButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/image/clearButton.png"))); // NOI18N
 
 		pricePerSeatLabel.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 		pricePerSeatLabel.setForeground(new java.awt.Color(255, 255, 255));

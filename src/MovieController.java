@@ -1,13 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -19,9 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
-import javax.swing.SwingConstants;
 
 /**
  * Keeps references to Models and UI classes
@@ -122,7 +117,7 @@ public class MovieController {
 		totalSeatTextField.setEditable(false);
 		totalPriceTextField.setEditable(false);
 
-		Icon buyIcon = new ImageIcon("src\\image\\money.png");
+		Icon buyIcon = new ImageIcon("/image/money.png");
 		// do not show columnNames when click buy button.
 		String[] bookingInfo = ticket.getDescription();
 		int row = bookingInfo.length;
@@ -221,9 +216,9 @@ public class MovieController {
 			String theater = ui.getTheaterComboBox().getSelectedItem().toString();
 			ticket.setCurrentTheater(theater);
 			if (ticket.getCurrentTheater().getLevel().equalsIgnoreCase("4D"))
-				ui.getIconTheaterLabel().setIcon(new ImageIcon("src/image/4D.png"));
+				ui.getIconTheaterLabel().setIcon(new ImageIcon(this.getClass().getResource("/image/4D.png")));
 			else if (ticket.getCurrentTheater().getLevel().equalsIgnoreCase("3D"))
-				ui.getIconTheaterLabel().setIcon(new ImageIcon("src/image/3D.png"));
+				ui.getIconTheaterLabel().setIcon(new ImageIcon(this.getClass().getResource("/image/3D.png")));
 			else
 				ui.getIconTheaterLabel().setIcon(null);
 			ui.getPricePerSeatTextField().setText(ticket.getPrice() + "");
@@ -266,15 +261,17 @@ public class MovieController {
 
 				String selectedShowTime = ui.getShowTimeComboBox().getSelectedItem().toString();
 				if (isTimePassedShowtime(selectedShowTime)) {
-					buttons[i][j].setIcon(new ImageIcon("src/image/seatAvailable.jpg"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
 					buttons[i][j].setEnabled(false);
 				} else if (!checkIsAvailable(i, j)) {
-					buttons[i][j].setIcon(new ImageIcon("src\\image\\seatFull.jpg"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatFull.jpg")));
 				} else if (ticket.isChecked(i, j)) {
-					buttons[i][j].setIcon(new ImageIcon("src\\image\\seatSelected.png"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatSelected.png")));
+					System.out.println(this.getClass().getResource("/image/seatSelected.png"));
+
 					buttons[i][j].addActionListener(buttonActions);
 				} else {
-					buttons[i][j].setIcon(new ImageIcon("src/image/seatAvailable.jpg"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
 					buttons[i][j].addActionListener(buttonActions);
 				}
 				pane.add(buttons[i][j]);
@@ -292,11 +289,11 @@ public class MovieController {
 	private ActionListener buttonActions = (ActionEvent ae) -> {
 		JToggleButton button = (JToggleButton) ae.getSource();
 		if (button.isSelected()) {
-			button.setIcon(new ImageIcon("src\\image\\seatSelected.png"));
+			button.setIcon(new ImageIcon(this.getClass().getResource("/image/seatSelected.png")));
 			int[] temp = arrStringToInt(button.getActionCommand());
 			ticket.booking(temp[0], temp[1]);
 		} else {
-			button.setIcon(new ImageIcon("src\\image\\seatAvailable.jpg"));
+			button.setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
 			int[] temp = arrStringToInt(button.getActionCommand());
 			ticket.unbooking(temp[0], temp[1]);
 		}

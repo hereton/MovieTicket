@@ -5,15 +5,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- * user interface using NetBean to design.
+ * user interface of the MovieTicket by using NetBean to design.
  *
  * @author Wongsathorn Panichkurkul and Totsapon Menkul
  */
 public class MovieTicketUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel bottomPanel;
 	private JButton buyButton;
@@ -56,11 +53,6 @@ public class MovieTicketUI extends JFrame {
 	public MovieTicketUI() {
 		initComponents();
 	}
-
-	/*
-	 * public static void main(String[] args) { MovieTicketUI ui=new
-	 * MovieTicketUI(); ui.run(); }
-	 */
 
 	/**
 	 * created by using NetBeans design.
@@ -636,6 +628,9 @@ public class MovieTicketUI extends JFrame {
 		return this.pricePerSeatTextField;
 	}
 
+	/**
+	 * Run the program.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

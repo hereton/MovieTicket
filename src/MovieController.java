@@ -21,18 +21,18 @@ import javax.swing.JToggleButton;
 /**
  * Keeps references to Models and UI classes
  * 
- * @author General. Prayuth ChanOcha.
+ * @author Wongsathorn Panichkurkul
  *
  */
 public class MovieController {
-	private Ticket ticket = new Ticket();
-	private MovieManager manager;
+	private Ticket ticket;
+	private MovieManager manager = new MovieManager();
 	private MovieTicketUI ui;
 	private Map<String, Movie> movies;
 	private DefaultListModel<String> movieList = new DefaultListModel<>();
 
-	public MovieController(MovieTicketUI ui, MovieManager manager) {
-		this.manager = manager;
+	public MovieController(MovieTicketUI ui, Ticket ticket) {
+		this.ticket = ticket;
 		this.ui = ui;
 		this.manager.readData();
 		this.movies = manager.getAllMovies();

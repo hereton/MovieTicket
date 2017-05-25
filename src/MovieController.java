@@ -21,7 +21,7 @@ import javax.swing.JToggleButton;
 /**
  * Keeps references to Models and UI classes
  * 
- * @author Wongsathorn Panichkurkul
+ * @author Wongsathorn Panichkurkul and Totsapon Menkul.
  *
  */
 public class MovieController {
@@ -39,6 +39,9 @@ public class MovieController {
 		addMovieList(movies);
 	}
 
+	/**
+	 * Set UI and control to launch.
+	 */
 	public void run() {
 		control();
 		this.ui.run();
@@ -90,7 +93,11 @@ public class MovieController {
 		ui.getClearButton().addActionListener(e -> clearButtonActionPerformed(e));
 	}
 
-	// action performed for each buttons.
+	/**
+	 * set seat and price text field to "".
+	 * 
+	 * @param evt
+	 */
 	private void clearButtonActionPerformed(ActionEvent evt) {
 		if (ticket.getCurrentMovie() != null) {
 			ticket.reset();
@@ -101,6 +108,11 @@ public class MovieController {
 		}
 	}
 
+	/**
+	 * Get all information of selected seat.
+	 * 
+	 * @param evt
+	 */
 	private void buyButtonActionPerformed(ActionEvent evt) {
 		JPanel panel = new JPanel(new BorderLayout());
 
@@ -163,6 +175,9 @@ public class MovieController {
 		}
 	}
 
+	/**
+	 * reset all data in amount and seat text field.
+	 */
 	private void reset() {
 		ui.getRowAndColumnPanel().removeAll();
 		int row = ticket.getCurrentTheater().getRow();
@@ -188,6 +203,11 @@ public class MovieController {
 		}
 	}
 
+	/**
+	 * create seat when changing show time.
+	 * 
+	 * @param evt
+	 */
 	private void showTimeComboBoxActionPerformed(ActionEvent evt) {
 		if (ui.getShowTimeComboBox().getSelectedItem() != null) {
 			ui.getRowAndColumnPanel().removeAll();
@@ -196,6 +216,9 @@ public class MovieController {
 		}
 	}
 
+	/**
+	 * set all data when click select button.
+	 */
 	private void setChoosedMovie() {
 		ticket.setMovie(movies.get(ui.getMovieJList().getSelectedValue()));
 		for (String s : movies.keySet()) {
@@ -211,6 +234,9 @@ public class MovieController {
 		}
 	}
 
+	/**
+	 * set show time when get data from theater combo box.
+	 */
 	private void setShowTime() {
 		if (ui.getTheaterComboBox().getSelectedItem() != null) {
 			String theater = ui.getTheaterComboBox().getSelectedItem().toString();
@@ -232,6 +258,14 @@ public class MovieController {
 		}
 	}
 
+	/**
+	 * if current time is passed return false.
+	 * 
+	 * @param selectedDate
+	 *            selected time.
+	 * 
+	 * @return true if the time has past. false otherwise.
+	 */
 	private boolean isTimePassedShowtime(String selectedDate) {
 		String currentDate = ui.getCurrentTimeLabel().getText().substring(0, 5).replace('.', ':');
 		LocalTime time = LocalTime.parse(currentDate);
@@ -241,6 +275,14 @@ public class MovieController {
 		return false;
 	}
 
+	/**
+	 * Create arrays of toggle buttons.
+	 * 
+	 * @param row
+	 *            is number of row.
+	 * @param col
+	 *            is number of column.
+	 */
 	private void creatButtonWithEnterRowAndCol(int row, int col) {
 
 		JToggleButton[][] buttons = new JToggleButton[row][col];
@@ -281,11 +323,23 @@ public class MovieController {
 		ui.validate();
 	}
 
+	/**
+	 * check seat that is Available or not.
+	 * 
+	 * @param row
+	 *            position
+	 * @param column
+	 *            position
+	 * @return true if it's available. false otherwise.
+	 */
 	private boolean checkIsAvailable(int row, int column) {
 		return ticket.getCurrentTheater().getSeats().get(ui.getShowTimeComboBox().getSelectedItem()).isAvailable(row,
 				column);
 	}
 
+	/**
+	 * ActionListenr for seat buttons.
+	 */
 	private ActionListener buttonActions = (ActionEvent ae) -> {
 		JToggleButton button = (JToggleButton) ae.getSource();
 		if (button.isSelected()) {
@@ -301,6 +355,13 @@ public class MovieController {
 		ui.getPriceTextField().setText(ticket.getTotalPrice() + "");
 	};
 
+	/**
+	 * Convert string into arrays of int that have 2 capacity.
+	 * 
+	 * @param string
+	 *            input string.
+	 * @return int[0] row position of seat int[1] is column position of seat.
+	 */
 	private int[] arrStringToInt(String string) {
 		String[] tempString = string.split(" ");
 		int[] tempInt = new int[2];

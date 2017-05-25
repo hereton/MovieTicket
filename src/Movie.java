@@ -4,7 +4,7 @@ import java.util.Map;
 /**
  * movie class contain a movie details.
  * 
- * @author Taksin chinawat.
+ * @author Wongsathorn Panichkurkul and Totsapon Menkul
  *
  */
 public class Movie implements Cloneable {

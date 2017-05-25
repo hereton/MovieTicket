@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Ticket {
 
@@ -50,15 +48,15 @@ public class Ticket {
 
 	public void unbooking(int row, int column) {
 		this.currentSeat.unbooking(row, column);
-		description.remove(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + row + "," + column + "-"
-				+ currentTheater.getPrice());
+		description.remove(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + (row + 1) + ","
+				+ (column + 1) + "-" + currentTheater.getPrice());
 		count--;
 	}
 
 	public void booking(int row, int column) {
 		this.currentSeat.booking(row, column);
-		description.add(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + row + "," + column + "-"
-				+ currentTheater.getPrice());
+		description.add(currentTheater.getName() + "-" + currentSeat.getShowTime() + "-" + (row + 1) + ","
+				+ (column + 1) + "-" + currentTheater.getPrice());
 		count++;
 	}
 

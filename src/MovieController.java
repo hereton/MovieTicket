@@ -1,22 +1,21 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextPane;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 /**
@@ -103,7 +102,22 @@ public class MovieController {
 	}
 
 	private void buyButtonActionPerformed(ActionEvent evt) {
-		Icon buyIcon = new ImageIcon("src\\image\\money.png");
+		JPanel panel = new JPanel(new BorderLayout());
+
+		// add total seat and total price using panel.
+		JPanel totalInfo = new JPanel();
+		JLabel movieNameLabel = new JLabel("Movie Name:");
+		JLabel totalSeatLabel = new JLabel("Total seat:");
+		JLabel totalPriceLabel = new JLabel("Total Price:");
+		JTextField movieNameTextField = new JTextField(ticket.getCurrentMovie().getTitle() + "");
+		JTextField totalSeatTextField = new JTextField(ticket.getAmount() + "");
+		JTextField totalPriceTextField = new JTextField(ticket.getTotalPrice() + "");
+
+		movieNameTextField.setEditable(false);
+		totalSeatTextField.setEditable(false);
+		totalPriceTextField.setEditable(false);
+
+		Icon buyIcon = new ImageIcon("/image/money.png");
 		// do not show columnNames when click buy button.
 		String[] bookingInfo = ticket.getDescription();
 		int row = bookingInfo.length;
@@ -122,17 +136,23 @@ public class MovieController {
 			}
 		}
 		JTable table = new JTable(data, columnNames);
-		JTextPane tempPane = new JTextPane();
-		tempPane.setFont(new Font(Font.SERIF, Font.BOLD, 14));
-		tempPane.setForeground(Color.black);
+		table.setEnabled(false);
+
+		totalInfo.add(movieNameLabel);
+		totalInfo.add(movieNameTextField);
+		totalInfo.add(totalSeatLabel);
+		totalInfo.add(totalSeatTextField);
+		totalInfo.add(totalPriceLabel);
+		totalInfo.add(totalPriceTextField);
+
+		panel.add(table, BorderLayout.NORTH);
+		panel.add(totalInfo, BorderLayout.SOUTH);
+
 		if (ticket.getCurrentMovie() != null) {
 			int seats = ticket.getAmount();
-			double totalPrice = ticket.getTotalPrice();
 			if (seats > 0) {
-				tempPane.setText(String.format("Total Amount : %d\nTotal Price : %.2f Baht\n", seats, totalPrice));
-				tempPane.setEditable(false);
 
-				int n = JOptionPane.showConfirmDialog(ui, table, "Confirm tickets", JOptionPane.YES_OPTION,
+				int n = JOptionPane.showConfirmDialog(ui, panel, "Confirm tickets", JOptionPane.YES_OPTION,
 						JOptionPane.QUESTION_MESSAGE, buyIcon);
 
 				if (n == 0) {
@@ -196,9 +216,9 @@ public class MovieController {
 			String theater = ui.getTheaterComboBox().getSelectedItem().toString();
 			ticket.setCurrentTheater(theater);
 			if (ticket.getCurrentTheater().getLevel().equalsIgnoreCase("4D"))
-				ui.getIconTheaterLabel().setIcon(new ImageIcon("src/image/4D.png"));
+				ui.getIconTheaterLabel().setIcon(new ImageIcon(this.getClass().getResource("/image/4D.png")));
 			else if (ticket.getCurrentTheater().getLevel().equalsIgnoreCase("3D"))
-				ui.getIconTheaterLabel().setIcon(new ImageIcon("src/image/3D.png"));
+				ui.getIconTheaterLabel().setIcon(new ImageIcon(this.getClass().getResource("/image/3D.png")));
 			else
 				ui.getIconTheaterLabel().setIcon(null);
 			ui.getPricePerSeatTextField().setText(ticket.getPrice() + "");
@@ -237,17 +257,21 @@ public class MovieController {
 				buttons[i][j] = new JToggleButton();
 				buttons[i][j].setActionCommand(i + " " + j);
 				buttons[i][j].setPreferredSize(new Dimension(30, 30));
+				buttons[i][j].setToolTipText("Row: " + (i + 1) + " ,Column: " + (j + 1));
+
 				String selectedShowTime = ui.getShowTimeComboBox().getSelectedItem().toString();
 				if (isTimePassedShowtime(selectedShowTime)) {
-					buttons[i][j].setIcon(new ImageIcon("src/image/seatAvailable.jpg"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
 					buttons[i][j].setEnabled(false);
 				} else if (!checkIsAvailable(i, j)) {
-					buttons[i][j].setIcon(new ImageIcon("src\\image\\seatFull.jpg"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatFull.jpg")));
 				} else if (ticket.isChecked(i, j)) {
-					buttons[i][j].setIcon(new ImageIcon("src\\image\\seatSelected.png"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatSelected.png")));
+					System.out.println(this.getClass().getResource("/image/seatSelected.png"));
+
 					buttons[i][j].addActionListener(buttonActions);
 				} else {
-					buttons[i][j].setIcon(new ImageIcon("src/image/seatAvailable.jpg"));
+					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
 					buttons[i][j].addActionListener(buttonActions);
 				}
 				pane.add(buttons[i][j]);
@@ -265,11 +289,11 @@ public class MovieController {
 	private ActionListener buttonActions = (ActionEvent ae) -> {
 		JToggleButton button = (JToggleButton) ae.getSource();
 		if (button.isSelected()) {
-			button.setIcon(new ImageIcon("src\\image\\seatSelected.png"));
+			button.setIcon(new ImageIcon(this.getClass().getResource("/image/seatSelected.png")));
 			int[] temp = arrStringToInt(button.getActionCommand());
 			ticket.booking(temp[0], temp[1]);
 		} else {
-			button.setIcon(new ImageIcon("src\\image\\seatAvailable.jpg"));
+			button.setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
 			int[] temp = arrStringToInt(button.getActionCommand());
 			ticket.unbooking(temp[0], temp[1]);
 		}

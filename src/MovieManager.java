@@ -22,7 +22,7 @@ public class MovieManager {
 	public void readData() {
 		try {
 			// read all theaters.
-			products = new CsvReader("src/data/Theater.csv");
+			products = new CsvReader("Theater.csv");
 			products.readHeaders();
 			while (products.readRecord()) {
 				String theater = products.get("Theater");
@@ -33,7 +33,7 @@ public class MovieManager {
 				theaters.put(theater, new Theater(theater, price, row, column, level));
 			}
 			// read all movies.
-			products = new CsvReader("src/data/Movie.csv");
+			products = new CsvReader("Movie.csv");
 			products.readHeaders();
 			while (products.readRecord()) {
 				String theater = products.get("Theater");

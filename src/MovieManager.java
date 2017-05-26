@@ -1,3 +1,4 @@
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -85,10 +86,12 @@ public class MovieManager {
 				csvOutput.write("-----------------------------");
 				csvOutput.endRecord();
 			}
-			csvOutput.write("Total Price : " + ticket.getTotalPrice());
+			csvOutput.write("Total Price : " + ticket.getTotalPrice() + " Baht.");
 			csvOutput.endRecord();
 			csvOutput.write("Total Seats : " + ticket.getAmount());
 			csvOutput.close();
+			Desktop desktop = Desktop.getDesktop();
+			desktop.open(new File(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@ To run this application you will need 3 things
 - 2 Movie.csv
 - 3 Theater.csv
 <br><br>
-you can dowload them from [MovieTicket.jar](https://github.com/hereton/MovieTicket/blob/master/MovieTicket.jar) [Movie.csv](https://github.com/hereton/MovieTicket/blob/master/Movie.csv) [Theater.csv](https://github.com/hereton/MovieTicket/blob/master/Theater.csv)<br><br><b>***All of them must be at the same location</b> OR File [MovieTicket.rar](https://github.com/hereton/MovieTicket/raw/master/MovieTicket.rar)<br>
+you can dowload them from [MovieTicket.jar](https://github.com/hereton/MovieTicket/blob/master/MovieTicket.jar) [Movie.csv](https://github.com/hereton/MovieTicket/blob/master/Movie.csv) [Theater.csv](https://github.com/hereton/MovieTicket/blob/master/Theater.csv)<br><br><b>***All of them must be at the same location</b> OR File [MovieTicket.zip](https://github.com/hereton/MovieTicket/raw/master/MovieTicket.zip)<br>
 ## How to use 
 - 1 Choose daily movie in the list 
 - 2 Click choose button 
@@ -22,7 +22,6 @@ you can dowload them from [MovieTicket.jar](https://github.com/hereton/MovieTick
 - 5 After selected seat click buy button then pay the money to the ticket seller.
 - 6 The ticket will printed.
 <br>
-<br><b>Note: </b> As a movie manager You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column.
-
-<br>
->By Wongsathorn Panichkurkul and Totsapon Menkul
+<br><b>Note: </b> As a movie manager You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column in Theater.csv file.<br>
+ 
+> By Wongsathorn Panichkurkul and Totsapon Menkul

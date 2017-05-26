@@ -315,8 +315,6 @@ public class MovieController {
 					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatFull.jpg")));
 				} else if (ticket.isChecked(i, j)) {
 					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatSelected.png")));
-					System.out.println(this.getClass().getResource("/image/seatSelected.png"));
-
 					buttons[i][j].addActionListener(buttonActions);
 				} else {
 					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));

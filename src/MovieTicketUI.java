@@ -210,7 +210,6 @@ public class MovieTicketUI extends JFrame {
 
 		currentTimeLabel.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 		currentTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
-		currentTimeLabel.setText("--/--/--");
 
 		logoLabel.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/image/Logo.jpg"))); // NOI18N
 

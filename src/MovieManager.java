@@ -20,7 +20,7 @@ public class MovieManager {
 	private Map<String, Theater> theaters = new HashMap<String, Theater>();
 	private CsvReader products;
 	private CsvWriter csvOutput;
-	private String outputFile = "ticket_number";
+	private final String OUTPUTFILE = "ticket_number";
 	private int count = 1;
 
 	/**
@@ -67,7 +67,7 @@ public class MovieManager {
 	 *            is the ticket object.
 	 */
 	public void writeFile(Ticket ticket) {
-		String fileName = outputFile + count + ".txt";
+		String fileName = OUTPUTFILE + count + ".txt";
 		try {
 			csvOutput = new CsvWriter(new FileWriter(fileName), '\n');
 			csvOutput.write("Movie : " + ticket.getCurrentMovie().getTitle());

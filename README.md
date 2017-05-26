@@ -22,7 +22,5 @@ you can dowload them from [MovieTicket.jar](https://github.com/hereton/MovieTick
 - 5 After selected seat click buy button then pay the money to the ticket seller.
 - 6 The ticket will printed.
 <br>
-<br><b>Note: </b> As a movie manager You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column in Theater.csv
-
-<br>
+<br><b>Note: </b> As a movie manager You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column in Theater.csv file.
 >By Wongsathorn Panichkurkul and Totsapon Menkul

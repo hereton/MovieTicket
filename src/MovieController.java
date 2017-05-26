@@ -194,6 +194,10 @@ public class MovieController {
 		ui.getPriceTextField().setText(ticket.getTotalPrice() + "");
 	}
 
+	/**
+	 * Handle action when user choose movie.
+	 * @param evt is ActionEvent
+	 */
 	private void chooseMovieButtonActionPerformed(ActionEvent evt) {
 		if (ui.getMovieJList().getSelectedValue() == null)
 			JOptionPane.showMessageDialog(ui, "Please select movie");

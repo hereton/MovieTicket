@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,6 +25,8 @@ public class MovieManager {
 	 * Read all data with CsvReader and collect in map.
 	 */
 	public void readData() {
+		if (!new File("Theater.csv").exists() || !new File("Movie.csv").exists())
+			throw new RuntimeException();
 		try {
 			// read all theaters.
 			products = new CsvReader("Theater.csv");

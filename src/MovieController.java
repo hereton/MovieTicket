@@ -41,6 +41,7 @@ public class MovieController {
 			addMovieList(movies);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(ui, "Please check your csv file !!!");
+			System.exit(0);
 		}
 	}
 

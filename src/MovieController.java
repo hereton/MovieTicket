@@ -40,7 +40,7 @@ public class MovieController {
 			this.movies = manager.getAllMovies();
 			addMovieList(movies);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(ui, "Please select movie!");
+			JOptionPane.showMessageDialog(ui, "Please check your csv file !!!");
 		}
 	}
 

@@ -65,7 +65,9 @@ public class MovieManager {
 		String fileName = outputFile + count + ".txt";
 		try {
 			csvOutput = new CsvWriter(new FileWriter(fileName), '\n');
-			csvOutput.write("Movie : " + ticket.getCurrentMovie().getTitle() + "\n");
+			csvOutput.write("Movie : " + ticket.getCurrentMovie().getTitle());
+			csvOutput.endRecord();
+			csvOutput.write("-----------------------------");
 			csvOutput.endRecord();
 			for (String des : ticket.getDescription()) {
 				String[] splitDetail = des.split("-");
@@ -80,6 +82,9 @@ public class MovieManager {
 				csvOutput.write("-----------------------------");
 				csvOutput.endRecord();
 			}
+			csvOutput.write("Total Price : " + ticket.getTotalPrice());
+			csvOutput.endRecord();
+			csvOutput.write("Total Seats : " + ticket.getAmount());
 			csvOutput.close();
 		} catch (IOException e) {
 			e.printStackTrace();

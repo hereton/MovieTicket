@@ -101,8 +101,8 @@ public class MovieTicketUI extends JFrame {
 		setBounds(new java.awt.Rectangle(2, 2, 1440, 800));
 		setMinimumSize(new java.awt.Dimension(1440, 800));
 		setName("fame"); // NOI18N
-		setPreferredSize(new java.awt.Dimension(1600, 800));
-		setSize(new java.awt.Dimension(1600, 800));
+		setPreferredSize(new java.awt.Dimension(1440, 800));
+		setSize(new java.awt.Dimension(1440, 800));
 
 		leftPanel.setBackground(new java.awt.Color(0, 0, 0));
 		leftPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

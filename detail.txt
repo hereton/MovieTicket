@@ -1,0 +1,3 @@
+You can add/edit/remove movies in Movie.csv by looking at the default movies items in the file. The same as Theater.csv file.
+
+for more details. please go to : https://github.com/hereton/MovieTicket/blob/master/README.md

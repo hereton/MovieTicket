@@ -20,6 +20,6 @@ you can dowload them from [a link](https://github.com/hereton/MovieTicket)
 - 6 The ticket will printed.
 
 <br>
-<br>You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column.
+<br><b>Note: </b> As a movie manager You can add or remove all movies and details by editing Book.csv file, Also can edit each price and theater by change row and column.
 
 >By Wongsathorn Panichkurkul and Totsapon Menkul

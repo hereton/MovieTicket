@@ -163,11 +163,10 @@ public class MovieController {
 		if (ticket.getCurrentMovie() != null) {
 			int seats = ticket.getAmount();
 			if (seats > 0) {
-
 				int n = JOptionPane.showConfirmDialog(ui, panel, "Confirm tickets", JOptionPane.YES_OPTION,
 						JOptionPane.QUESTION_MESSAGE, buyIcon);
-
 				if (n == 0) {
+					manager.writeFile(ticket);
 					ticket.confirm();
 					reset();
 				}
@@ -284,7 +283,6 @@ public class MovieController {
 	 *            is number of column.
 	 */
 	private void creatButtonWithEnterRowAndCol(int row, int col) {
-
 		JToggleButton[][] buttons = new JToggleButton[row][col];
 		JPanel pane = new JPanel();
 		pane.setBackground(Color.BLACK);

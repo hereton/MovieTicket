@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,9 @@ public class MovieManager {
 	private Map<String, Movie> movies = new HashMap<String, Movie>();
 	private Map<String, Theater> theaters = new HashMap<String, Theater>();
 	private CsvReader products;
+	private CsvWriter csvOutput;
+	private String outputFile = "ticket_number";
+	private int count = 1;
 
 	/**
 	 * Read all data with CsvReader and collect in map.
@@ -49,6 +53,38 @@ public class MovieManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Write the information to text file.
+	 * 
+	 * @param ticket
+	 *            is the ticket object.
+	 */
+	public void writeFile(Ticket ticket) {
+		String fileName = outputFile + count + ".txt";
+		try {
+			csvOutput = new CsvWriter(new FileWriter(fileName), '\n');
+			csvOutput.write("Movie : " + ticket.getCurrentMovie().getTitle() + "\n");
+			csvOutput.endRecord();
+			for (String des : ticket.getDescription()) {
+				String[] splitDetail = des.split("-");
+				csvOutput.write("Theater : " + splitDetail[0]);
+				csvOutput.endRecord();
+				csvOutput.write("Show time : " + splitDetail[1]);
+				csvOutput.endRecord();
+				csvOutput.write("Row,Column : " + splitDetail[2]);
+				csvOutput.endRecord();
+				csvOutput.write("Price : " + splitDetail[3]);
+				csvOutput.endRecord();
+				csvOutput.write("-----------------------------");
+				csvOutput.endRecord();
+			}
+			csvOutput.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		count++;
 	}
 
 	/**

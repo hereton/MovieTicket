@@ -7,7 +7,7 @@ import java.util.Map;
  * @author Wongsathorn Panichkurkul and Totsapon Menkul
  *
  */
-public class Movie implements Cloneable {
+public class Movie {
 
 	private String title;
 	private String description;

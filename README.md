@@ -10,7 +10,7 @@ To run this application you will need 3 things
 - 3 Theater.csv
 <br><br>
 you can dowload them from [a link](https://github.com/hereton/MovieTicket)
-<b>All of them must be at the same location</b><br>
+<br><b>***All of them must be at the same location</b><br>
 ## How to use 
 - 1 Choose daily movie in the list 
 - 2 Click choose button 

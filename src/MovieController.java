@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Map;
 
@@ -34,9 +35,13 @@ public class MovieController {
 	public MovieController(MovieTicketUI ui, Ticket ticket) {
 		this.ticket = ticket;
 		this.ui = ui;
-		this.manager.readData();
-		this.movies = manager.getAllMovies();
-		addMovieList(movies);
+		try {
+			this.manager.readData();
+			this.movies = manager.getAllMovies();
+			addMovieList(movies);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(ui, "Please select movie!");
+		}
 	}
 
 	/**
@@ -114,61 +119,64 @@ public class MovieController {
 	 * @param evt
 	 */
 	private void buyButtonActionPerformed(ActionEvent evt) {
-		JPanel panel = new JPanel(new BorderLayout());
+		if (ticket.getCurrentMovie() == null)
+			JOptionPane.showMessageDialog(ui, "Please select movie!");
+		else {
+			JPanel panel = new JPanel(new BorderLayout());
+			// add total seat and total price using panel.
+			JPanel totalInfo = new JPanel();
+			JLabel movieNameLabel = new JLabel("Movie Name:");
+			JLabel totalSeatLabel = new JLabel("Total seat:");
+			JLabel totalPriceLabel = new JLabel("Total Price:");
+			JTextField movieNameTextField = new JTextField(ticket.getCurrentMovie().getTitle() + "");
+			JTextField totalSeatTextField = new JTextField(ticket.getAmount() + "");
+			JTextField totalPriceTextField = new JTextField(ticket.getTotalPrice() + "");
 
-		// add total seat and total price using panel.
-		JPanel totalInfo = new JPanel();
-		JLabel movieNameLabel = new JLabel("Movie Name:");
-		JLabel totalSeatLabel = new JLabel("Total seat:");
-		JLabel totalPriceLabel = new JLabel("Total Price:");
-		JTextField movieNameTextField = new JTextField(ticket.getCurrentMovie().getTitle() + "");
-		JTextField totalSeatTextField = new JTextField(ticket.getAmount() + "");
-		JTextField totalPriceTextField = new JTextField(ticket.getTotalPrice() + "");
+			movieNameTextField.setEditable(false);
+			totalSeatTextField.setEditable(false);
+			totalPriceTextField.setEditable(false);
 
-		movieNameTextField.setEditable(false);
-		totalSeatTextField.setEditable(false);
-		totalPriceTextField.setEditable(false);
-
-		Icon buyIcon = new ImageIcon("/image/money.png");
-		// do not show columnNames when click buy button.
-		String[] bookingInfo = ticket.getDescription();
-		int row = bookingInfo.length;
-		Object[][] data = new Object[row + 1][4];
-		String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
-		/** Add head */
-		data[0][0] = "Theater";
-		data[0][1] = "Show Time";
-		data[0][2] = "Seat";
-		data[0][3] = "Price";
-		/** add Data */
-		for (int i = 0; i < row; i++) {
-			for (int k = 0; k < 4; k++) {
-				String[] tempData = bookingInfo[i].split("-");
-				data[i + 1][k] = tempData[k];
+			Icon buyIcon = new ImageIcon("/image/money.png");
+			// do not show columnNames when click buy button.
+			String[] bookingInfo = ticket.getDescription();
+			int row = bookingInfo.length;
+			Object[][] data = new Object[row + 1][4];
+			String[] columnNames = { "Theater", "Show Time", "Seat", "Price" };
+			/** Add head */
+			data[0][0] = "Theater";
+			data[0][1] = "Show Time";
+			data[0][2] = "Seat";
+			data[0][3] = "Price";
+			/** add Data */
+			for (int i = 0; i < row; i++) {
+				for (int k = 0; k < 4; k++) {
+					String[] tempData = bookingInfo[i].split("-");
+					data[i + 1][k] = tempData[k];
+				}
 			}
-		}
-		JTable table = new JTable(data, columnNames);
-		table.setEnabled(false);
+			JTable table = new JTable(data, columnNames);
+			table.setEnabled(false);
 
-		totalInfo.add(movieNameLabel);
-		totalInfo.add(movieNameTextField);
-		totalInfo.add(totalSeatLabel);
-		totalInfo.add(totalSeatTextField);
-		totalInfo.add(totalPriceLabel);
-		totalInfo.add(totalPriceTextField);
+			totalInfo.add(movieNameLabel);
+			totalInfo.add(movieNameTextField);
+			totalInfo.add(totalSeatLabel);
+			totalInfo.add(totalSeatTextField);
+			totalInfo.add(totalPriceLabel);
+			totalInfo.add(totalPriceTextField);
 
-		panel.add(table, BorderLayout.NORTH);
-		panel.add(totalInfo, BorderLayout.SOUTH);
+			panel.add(table, BorderLayout.NORTH);
+			panel.add(totalInfo, BorderLayout.SOUTH);
 
-		if (ticket.getCurrentMovie() != null) {
-			int seats = ticket.getAmount();
-			if (seats > 0) {
-				int n = JOptionPane.showConfirmDialog(ui, panel, "Confirm tickets", JOptionPane.YES_OPTION,
-						JOptionPane.QUESTION_MESSAGE, buyIcon);
-				if (n == 0) {
-					manager.writeFile(ticket);
-					ticket.confirm();
-					reset();
+			if (ticket.getCurrentMovie() != null) {
+				int seats = ticket.getAmount();
+				if (seats > 0) {
+					int n = JOptionPane.showConfirmDialog(ui, panel, "Confirm tickets", JOptionPane.YES_OPTION,
+							JOptionPane.QUESTION_MESSAGE, buyIcon);
+					if (n == 0) {
+						manager.writeFile(ticket);
+						ticket.confirm();
+						reset();
+					}
 				}
 			}
 		}

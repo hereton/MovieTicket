@@ -9,7 +9,7 @@ To run this application you will need 3 things
 - 2 Movie.csv
 - 3 Theater.csv
 <br><br>
-you can dowload them from [a link](https://github.com/hereton/MovieTicket)
+you can dowload them from [MovieTicket.jar](https://github.com/hereton/MovieTicket/blob/master/MovieTicket.jar) [Movie.csv](https://github.com/hereton/MovieTicket/blob/master/Movie.csv) [Theater.csv](https://github.com/hereton/MovieTicket/blob/master/Theater.csv)
 <br><b>***All of them must be at the same location</b><br>
 ## How to use 
 - 1 Choose daily movie in the list 

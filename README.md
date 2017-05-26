@@ -1,6 +1,6 @@
 # MovieTicket
 __Movie Ticket for daily use.__
-## Project Descriptiom
+## Project Description
   The purpose of this project is to buy a movie ticket.
 
 ## Please Read this before dowload JAR file.

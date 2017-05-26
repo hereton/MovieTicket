@@ -6,7 +6,7 @@ __Movie Ticket for daily use.__
 ## Please Read this before dowload JAR file.
 To run this application you will need 3 things
 - 1 MovieTicket.jar
-- 2 Book.csv
+- 2 Movie.csv
 - 3 Theater.csv
 <br><br>
 you can dowload them from [a link](https://github.com/hereton/MovieTicket)

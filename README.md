@@ -1,7 +1,7 @@
 # MovieTicket
 __Movie Ticket for daily use.__
 ## Vision of the Program
-we will make the booking movie ticket program for ticket seller. 
+We will make the booking movie ticket program for ticket seller. 
 This program can be add or remove the movie, can be reserve the seat, show the current time if the time go over period of movie you will not allow to book that time automatically.
 ## Value Proposition
 It's worth to do because we can know how the actual movie tickets program work.

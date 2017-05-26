@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * The theater class that contain seats and detail of the theater.
  * 
  * @author Wongsathorn Panichkurkul
  *

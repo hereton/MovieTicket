@@ -1,3 +1,4 @@
+package movie;
 
 /**
  * The seat class that contain detail of the seats.

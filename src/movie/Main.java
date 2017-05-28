@@ -1,3 +1,5 @@
+package movie;
+
 /**
  * The Main class for run the program.
  * 

@@ -1,3 +1,5 @@
+package movie;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,12 +27,21 @@ import javax.swing.JToggleButton;
  *
  */
 public class MovieController {
+
 	private Ticket ticket;
 	private MovieManager manager = new MovieManager();
 	private MovieTicketUI ui;
 	private Map<String, Movie> movies;
 	private DefaultListModel<String> movieList = new DefaultListModel<>();
 
+	/**
+	 * Constructor of MovieController.
+	 * 
+	 * @param ui
+	 *            is user-interface object.
+	 * @param ticket
+	 *            is the object of Ticket.
+	 */
 	public MovieController(MovieTicketUI ui, Ticket ticket) {
 		this.ticket = ticket;
 		this.ui = ui;
@@ -99,9 +110,10 @@ public class MovieController {
 	}
 
 	/**
-	 * set seat and price text field to "".
+	 * set seat and price text field to empty.
 	 * 
 	 * @param evt
+	 *            is ActionEvent of button.
 	 */
 	private void clearButtonActionPerformed(ActionEvent evt) {
 		if (ticket.getCurrentMovie() != null) {
@@ -117,6 +129,7 @@ public class MovieController {
 	 * Get all information of selected seat.
 	 * 
 	 * @param evt
+	 *            is ActionEvent of button.
 	 */
 	private void buyButtonActionPerformed(ActionEvent evt) {
 		if (ticket.getCurrentMovie() == null)
@@ -196,7 +209,9 @@ public class MovieController {
 
 	/**
 	 * Handle action when user choose movie.
-	 * @param evt is ActionEvent
+	 * 
+	 * @param evt
+	 *            is ActionEvent of button.
 	 */
 	private void chooseMovieButtonActionPerformed(ActionEvent evt) {
 		if (ui.getMovieJList().getSelectedValue() == null)
@@ -218,6 +233,7 @@ public class MovieController {
 	 * create seat when changing show time.
 	 * 
 	 * @param evt
+	 *            is ActionEvent of button.
 	 */
 	private void showTimeComboBoxActionPerformed(ActionEvent evt) {
 		if (ui.getShowTimeComboBox().getSelectedItem() != null) {
@@ -310,7 +326,6 @@ public class MovieController {
 				buttons[i][j].setActionCommand(i + " " + j);
 				buttons[i][j].setPreferredSize(new Dimension(30, 30));
 				buttons[i][j].setToolTipText("Row: " + (i + 1) + " ,Column: " + (j + 1));
-
 				String selectedShowTime = ui.getShowTimeComboBox().getSelectedItem().toString();
 				if (isTimePassedShowtime(selectedShowTime)) {
 					buttons[i][j].setIcon(new ImageIcon(this.getClass().getResource("/image/seatAvailable.jpg")));
@@ -368,7 +383,8 @@ public class MovieController {
 	 * 
 	 * @param string
 	 *            input string.
-	 * @return int[0] row position of seat int[1] is column position of seat.
+	 * @return Array of int that int[0] row position of seat int[1] is column
+	 *         position of seat.
 	 */
 	private int[] arrStringToInt(String string) {
 		String[] tempString = string.split(" ");
